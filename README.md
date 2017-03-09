@@ -19,12 +19,15 @@ postgres=> CREATE DATABASE players_development;
 postgres=> CREATE DATABASE players_test;
 
 $ yarn db:migrate
+$ NODE_ENV=test yarn db:migrate
 ```
 
 ## Develop
 
 ```sh
 $ yarn dev
+$ yarn test
+$ yarn test:watch
 ```
 
 ## Run

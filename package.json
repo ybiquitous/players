@@ -10,9 +10,12 @@
     "dev": "node -r dotenv/config server.js",
     "build": "next build",
     "start": "node -r dotenv/config server.js",
-    "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]]; then yarn build && yarn db:migrate; fi",
+    "test": "NODE_ENV=test ava",
+    "test:watch": "yarn test -- --watch",
+    "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]]; then yarn build && yarn db:sync; fi",
     "lint-staged": "lint-staged",
-    "db:migrate": "sequelize db:migrate"
+    "db:sync": "node -e \"require('./models').sequelize.sync()\"",
+    "db:drop": "node -e \"require('./models').sequelize.drop()\""
   },
   "lint-staged": {
     "*.@(js|jsx)": [
@@ -37,6 +40,7 @@
     "sequelize-cli": "*"
   },
   "devDependencies": {
+    "ava": "*",
     "eslint": "*",
     "eslint-config-ybiquitous": "*",
     "lint-staged": "*",
