@@ -10,7 +10,7 @@ $ yarn
 
 ```sh
 $ psql postgres
-postgres=# CREATE ROLE players WITH CREATEDB LOGIN PASSWORD 'play';
+postgres=> CREATE ROLE players WITH CREATEDB LOGIN PASSWORD 'play';
 ```
 
 ```sh
