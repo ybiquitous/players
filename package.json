@@ -1,0 +1,45 @@
+{
+  "name": "players",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ybiquitous/players.git",
+  "engines": {
+    "node": "7"
+  },
+  "scripts": {
+    "dev": "node -r dotenv/config server.js",
+    "build": "next build",
+    "start": "node -r dotenv/config server.js",
+    "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]]; then yarn build && yarn db:migrate; fi",
+    "lint-staged": "lint-staged",
+    "db:migrate": "sequelize db:migrate"
+  },
+  "lint-staged": {
+    "*.@(js|jsx)": [
+      "eslint --fix --max-warnings=0",
+      "git add"
+    ]
+  },
+  "pre-commit": {
+    "run": "lint-staged"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "dotenv": "*",
+    "express": "",
+    "isomorphic-fetch": "*",
+    "next": "beta",
+    "pg": "*",
+    "pg-hstore": "*",
+    "react": "*",
+    "react-dom": "*",
+    "sequelize": "*",
+    "sequelize-cli": "*"
+  },
+  "devDependencies": {
+    "eslint": "*",
+    "eslint-config-ybiquitous": "*",
+    "lint-staged": "*",
+    "pre-commit": "*"
+  }
+}
