@@ -1,5 +1,8 @@
 module.exports = (sequelize, DataTypes) => (
   sequelize.define('Player', {
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   })
 )
