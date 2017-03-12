@@ -18,8 +18,7 @@ $ psql -U players postgres
 postgres=> CREATE DATABASE players_development;
 postgres=> CREATE DATABASE players_test;
 
-$ yarn db:migrate
-$ NODE_ENV=test yarn db:migrate
+$ yarn db:sync
 ```
 
 ## Develop
