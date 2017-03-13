@@ -32,9 +32,10 @@ const ListItemIcon = () => (
 
 class Index extends React.Component {
   static async getInitialProps() {
-    const res = await fetch('http://localhost:3000/api/teams')
+    const apiEndpoint = process.env.API_ENDPOINT
+    const res = await fetch(`${apiEndpoint}/teams`)
     const teams = await res.json()
-    return { teams }
+    return { teams, apiEndpoint }
   }
 
   constructor(props) {
@@ -51,7 +52,7 @@ class Index extends React.Component {
   }
 
   async handleSearchChange({ target: { value: search } }) {
-    const url = new URL('http://localhost:3000/api/teams')
+    const url = new URL(`${this.props.apiEndpoint}/teams`)
     url.searchParams.append('q', search)
     const res = await fetch(url)
     const teams = await res.json()
