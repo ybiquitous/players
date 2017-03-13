@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const next = require('next')
@@ -11,6 +12,7 @@ app.prepare().then(() => {
 
   server.use(bodyParser.urlencoded({ extended: true }))
   server.use(bodyParser.json())
+  server.use(express.static(path.join(__dirname, 'public')))
 
   server.get('*', (req, res) => handle(req, res))
 

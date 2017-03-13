@@ -31,11 +31,13 @@
     "dotenv": "*",
     "express": "",
     "isomorphic-fetch": "*",
+    "material-ui": "*",
     "next": "beta",
     "pg": "*",
     "pg-hstore": "*",
     "react": "*",
     "react-dom": "*",
+    "react-tap-event-plugin": "*",
     "sequelize": "*",
     "sequelize-cli": "*"
   },
