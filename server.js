@@ -1,7 +1,7 @@
-const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const next = require('next')
+const { Team } = require('./models')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -12,7 +12,17 @@ app.prepare().then(() => {
 
   server.use(bodyParser.urlencoded({ extended: true }))
   server.use(bodyParser.json())
-  server.use(express.static(path.join(__dirname, 'public')))
+
+  server.get('/api/teams', async (req, res) => {
+    const query = req.query.q
+    let where
+    if (query) {
+      where = {
+        name: (query ? { like: `%${query}%` } : {}),
+      }
+    }
+    res.json(await Team.findAll({ where }))
+  })
 
   server.get('*', (req, res) => handle(req, res))
 

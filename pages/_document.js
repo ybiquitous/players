@@ -1,6 +1,11 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 import flush from 'styled-jsx/server' // eslint-disable-line import/no-extraneous-dependencies
 
+const css = `
+  body {
+  }
+`
+
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     const { html, head } = renderPage()
@@ -16,7 +21,7 @@ export default class MyDocument extends Document {
           <title>Players</title>
           <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-          <style>{'/* custom CSS */'}</style>
+          <style>{css}</style>
         </Head>
         <body>
           <Main />

@@ -1,7 +1,9 @@
+import 'isomorphic-fetch'
 import React from 'react'
 import AppBar from 'material-ui/AppBar'
 import Avatar from 'material-ui/Avatar'
 import FontIcon from 'material-ui/FontIcon'
+import Drawer from 'material-ui/Drawer'
 import IconButton from 'material-ui/IconButton'
 import IconMenu from 'material-ui/IconMenu'
 import { List, ListItem } from 'material-ui/List'
@@ -29,49 +31,68 @@ const ListItemIcon = () => (
 )
 
 class Index extends React.Component {
+  static async getInitialProps() {
+    const res = await fetch('http://localhost:3000/api/teams')
+    const teams = await res.json()
+    return { teams }
+  }
+
   constructor(props) {
     super(props)
 
     this.state = {
+      drawerOpen: false,
       search: '',
+      teams: props.teams,
     }
 
     this.handleSearchChange = this.handleSearchChange.bind(this)
+    this.toggleDrawer = this.toggleDrawer.bind(this)
   }
 
-  handleSearchChange({ target: { value } }) {
-    this.setState({ search: value })
+  async handleSearchChange({ target: { value: search } }) {
+    const url = new URL('http://localhost:3000/api/teams')
+    url.searchParams.append('q', search)
+    const res = await fetch(url)
+    const teams = await res.json()
+    this.setState({ search, teams })
+  }
+
+  toggleDrawer() {
+    this.setState({ drawerOpen: !this.state.drawerOpen })
   }
 
   render() {
     return (
       <div>
         <AppBar
-          title="Title"
+          title="Players"
           iconElementRight={<Logged />}
+          onLeftIconButtonTouchTap={this.toggleDrawer}
+          onTitleTouchTap={() => location.reload()}
         />
+        <Drawer open={this.state.drawerOpen} onRequestChange={this.toggleDrawer} docked={false}>
+          <MenuItem onTouchTap={this.toggleDrawer}>Menu Item</MenuItem>
+          <MenuItem onTouchTap={this.toggleDrawer}>Menu Item</MenuItem>
+        </Drawer>
         <TextField
           type="search"
           hintText="例) 世田谷 社会人"
           floatingLabelText="🔍 チームを探す"
-          floatingLabelFixed
           fullWidth
           value={this.state.search}
           onChange={this.handleSearchChange}
         />
         <List>
-          <ListItem
-            leftAvatar={<Avatar src="images/no-image.png" />}
-            primaryText="aaa"
-            secondaryText="aaaaaa"
-            rightIcon={<ListItemIcon />}
-          />
-          <ListItem
-            leftAvatar={<Avatar src="images/no-image.png" />}
-            primaryText="aaa"
-            secondaryText="aaaaaa"
-            rightIcon={<ListItemIcon />}
-          />
+          {this.state.teams.map(({ id, name }) => (
+            <ListItem
+              key={id}
+              leftAvatar={<Avatar src="/static/images/no-image.png" />}
+              primaryText={name}
+              secondaryText="aaaaaa"
+              rightIcon={<ListItemIcon />}
+            />
+          ))}
         </List>
       </div>
     )
