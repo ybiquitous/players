@@ -4,27 +4,11 @@ import AppBar from 'material-ui/AppBar'
 import Avatar from 'material-ui/Avatar'
 import FontIcon from 'material-ui/FontIcon'
 import Drawer from 'material-ui/Drawer'
-import IconButton from 'material-ui/IconButton'
-import IconMenu from 'material-ui/IconMenu'
 import { List, ListItem } from 'material-ui/List'
 import MenuItem from 'material-ui/MenuItem'
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import TextField from 'material-ui/TextField'
 import withMaterialUI from './hocs/with-material-ui'
-
-const Logged = props => (
-  <IconMenu
-    {...props}
-    iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-    targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-    anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-  >
-    <MenuItem primaryText="Refresh" />
-    <MenuItem primaryText="Help" />
-    <MenuItem primaryText="Sign out" />
-  </IconMenu>
-)
-Logged.muiName = 'IconMenu'
+import Menu from './parts/Menu'
 
 const ListItemIcon = () => (
   <FontIcon className="material-icons">chevron_right</FontIcon>
@@ -68,7 +52,7 @@ class Index extends React.Component {
       <div>
         <AppBar
           title="Players"
-          iconElementRight={<Logged />}
+          iconElementRight={<Menu />}
           onLeftIconButtonTouchTap={this.toggleDrawer}
           onTitleTouchTap={() => location.reload()}
         />
