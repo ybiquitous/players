@@ -1,3 +1,5 @@
+[![dependencies Status](https://david-dm.org/ybiquitous/players/status.svg)](https://david-dm.org/ybiquitous/players)
+
 # Players
 
 ## Install
