@@ -7,7 +7,7 @@
     "node": "7"
   },
   "scripts": {
-    "dev": "node -r dotenv/config server.js",
+    "dev": "nodemon -r dotenv/config server.js",
     "build": "next build",
     "start": "node -r dotenv/config server.js",
     "test": "NODE_ENV=test ava --serial",
@@ -47,6 +47,7 @@
     "eslint": "*",
     "eslint-config-ybiquitous": "*",
     "lint-staged": "*",
+    "nodemon": "*",
     "pre-commit": "*"
   }
 }
