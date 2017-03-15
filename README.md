@@ -1,4 +1,5 @@
 [![dependencies Status](https://david-dm.org/ybiquitous/players/status.svg)](https://david-dm.org/ybiquitous/players)
+[![devDependencies Status](https://david-dm.org/ybiquitous/players/dev-status.svg)](https://david-dm.org/ybiquitous/players?type=dev)
 
 # Players
 
