@@ -27,13 +27,18 @@ app.prepare().then(() => {
 
   server.post('/api/teams', async (req, res) => {
     const { name } = req.body
-    const created = await Team.create({ name })
-    const createdUrl = url.format({
-      protocol: req.protocol,
-      host: req.get('HOST'),
-      pathname: `/api/teams/${created.id}`,
-    })
-    res.status(201).set('Location', createdUrl).json()
+    try {
+      const created = await Team.create({ name })
+      const createdUrl = url.format({
+        protocol: req.protocol,
+        host: req.get('HOST'),
+        pathname: `/api/teams/${created.id}`,
+      })
+      res.status(201).set('Location', createdUrl).json(created)
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({ message: err.message, errors: err.errors })
+    }
   })
 
   server.get('*', (req, res) => handle(req, res))

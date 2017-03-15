@@ -39,6 +39,7 @@ class Index extends React.Component {
     return (
       <AppShell title="Players">
         <TextField
+          id="search"
           type="search"
           hintText="🔍 チームを探す（“世田谷 社会人”）"
           fullWidth

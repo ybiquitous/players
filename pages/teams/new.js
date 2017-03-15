@@ -61,17 +61,28 @@ class New extends React.Component {
 
     this.setState({ buttonDisabled: true, loading: true })
 
-    const res = await fetchAPI('teams', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: JSON.stringify({ name }),
-    })
-    if (res.ok) {
-      Router.push('/')
-    } else {
-      this.setState({ errorMessage: 'ネットワークエラー' })
+    try {
+      const res = await fetchAPI('teams', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify({ name }),
+      })
+      if (res.ok) {
+        Router.push('/')
+      } else {
+        const errorInfo = await res.json()
+        this.setState({
+          errorMessage: errorInfo.message,
+          nameError: errorInfo.errors.map(e => e.message).join(', '),
+          buttonDisabled: false,
+          loading: false,
+        })
+      }
+    } catch (err) {
+      console.error(err)
+      this.setState({ errorMessage: err.message, buttonDisabled: false, loading: false })
     }
   }
 
@@ -80,9 +91,11 @@ class New extends React.Component {
     return (
       <AppShell title="チーム作成">
         <TextField
+          id="teamName"
           floatingLabelText="チーム名"
           hintText="FCバルセロナ"
           errorText={nameError}
+          disabled={loading}
           fullWidth
           value={name}
           onChange={this.handleNameChange}
