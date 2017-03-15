@@ -3,6 +3,14 @@ import flush from 'styled-jsx/server' // eslint-disable-line import/no-extraneou
 
 const css = `
   body {
+    margin: 0;
+    padding: 0;
+  }
+
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 10px;
   }
 `
 

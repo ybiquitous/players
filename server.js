@@ -1,3 +1,4 @@
+const url = require('url')
 const express = require('express')
 const bodyParser = require('body-parser')
 const next = require('next')
@@ -22,6 +23,17 @@ app.prepare().then(() => {
       }
     }
     res.json(await Team.findAll({ where }))
+  })
+
+  server.post('/api/teams', async (req, res) => {
+    const { name } = req.body
+    const created = await Team.create({ name })
+    const createdUrl = url.format({
+      protocol: req.protocol,
+      host: req.get('HOST'),
+      pathname: `/api/teams/${created.id}`,
+    })
+    res.status(201).set('Location', createdUrl).json()
   })
 
   server.get('*', (req, res) => handle(req, res))
