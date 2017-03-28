@@ -33,7 +33,7 @@
     "express": "",
     "isomorphic-fetch": "*",
     "material-ui": "*",
-    "next": "beta",
+    "next": "*",
     "pg": "*",
     "pg-hstore": "*",
     "react": "*",
