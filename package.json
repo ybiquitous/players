@@ -36,6 +36,7 @@
     "next": "*",
     "pg": "*",
     "pg-hstore": "*",
+    "prop-types": "*",
     "react": "*",
     "react-dom": "*",
     "react-tap-event-plugin": "*",
