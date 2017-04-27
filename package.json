@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "ava": "*",
+    "babel-eslint": "*",
     "eslint": "*",
     "eslint-config-ybiquitous": "*",
     "lint-staged": "*",

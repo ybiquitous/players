@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Avatar from 'material-ui/Avatar'
 import FontIcon from 'material-ui/FontIcon'
 import { List, ListItem } from 'material-ui/List'
@@ -12,6 +13,13 @@ const ListItemIcon = () => (
 )
 
 class Index extends React.Component {
+  static propTypes = {
+    teams: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    })),
+  }
+
   static async getInitialProps() {
     const res = await fetchAPI('teams')
     const teams = await res.json()
