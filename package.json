@@ -13,7 +13,7 @@
     "test": "NODE_ENV=test ava --serial",
     "test:watch": "yarn test -- --watch",
     "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then yarn build && yarn db:sync; fi",
-    "lint-staged": "lint-staged",
+    "precommit": "lint-staged",
     "lint": "eslint --ignore-path=.gitignore .",
     "db:sync": "node -e \"require('./models').sequelize.sync()\"",
     "db:drop": "node -e \"require('./models').sequelize.drop()\""
@@ -23,9 +23,6 @@
       "eslint --fix --max-warnings=0",
       "git add"
     ]
-  },
-  "pre-commit": {
-    "run": "lint-staged"
   },
   "dependencies": {
     "body-parser": "*",
@@ -48,8 +45,8 @@
     "babel-eslint": "*",
     "eslint": "*",
     "eslint-config-ybiquitous": "*",
+    "husky": "*",
     "lint-staged": "*",
-    "nodemon": "*",
-    "pre-commit": "*"
+    "nodemon": "*"
   }
 }
