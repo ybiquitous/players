@@ -28,3 +28,4 @@ deploy:
   run:
     - yarn build
     - yarn db:sync
+    - restart
