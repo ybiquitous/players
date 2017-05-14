@@ -27,7 +27,7 @@
   "dependencies": {
     "body-parser": "*",
     "dotenv": "*",
-    "express": "",
+    "express": "*",
     "isomorphic-fetch": "*",
     "material-ui": "*",
     "next": "*",
