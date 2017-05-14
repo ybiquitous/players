@@ -31,9 +31,10 @@ export default function withMaterialUI(WrappedComponent) {
     }
 
     componentWillMount() {
-      // https://github.com/zeit/next.js/issues/232
       try {
-        injectTapEventPlugin()
+        if (typeof window !== 'undefined') {
+          injectTapEventPlugin()
+        }
       } catch (e) {
         // Do nothing, just preventing error
       }
