@@ -31,6 +31,5 @@ deploy:
   on: master
   skip_cleanup: true
   run:
-    - yarn build
     - yarn db:sync
     - restart

@@ -15,7 +15,8 @@
     "precommit": "lint-staged",
     "lint": "eslint --ignore-path=.gitignore .",
     "db:sync": "node -e \"require('./models').sequelize.sync()\"",
-    "db:drop": "node -e \"require('./models').sequelize.drop()\""
+    "db:drop": "node -e \"require('./models').sequelize.drop()\"",
+    "heroku-postbuild": "next build"
   },
   "lint-staged": {
     "*.@(js|jsx)": [
