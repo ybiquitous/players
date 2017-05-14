@@ -14,13 +14,14 @@ addons:
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/config.json config/config.json.bak
   - cp config/config.json.travis config/config.json
 
 scripts:
   - yarn test
 
 after_success:
-  - cp config/config.json config/config.json.travis
+  - cp config/config.json.bak config/config.json
 
 deploy:
   provider: heroku
