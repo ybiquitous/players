@@ -12,7 +12,6 @@
     "start": "node -r dotenv/config server.js",
     "test": "NODE_ENV=test ava --serial",
     "test:watch": "yarn test -- --watch",
-    "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then yarn build && yarn db:sync; fi",
     "precommit": "lint-staged",
     "lint": "eslint --ignore-path=.gitignore .",
     "db:sync": "node -e \"require('./models').sequelize.sync()\"",

@@ -18,3 +18,12 @@ before_script:
 
 scripts:
   - yarn test
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: jtXkqqBUqEfIq7Wm6po1dbjqlhmNf9dNh53ha4fpti7Gaft+V9oHAOwAmAlsJ6KBorRTXOUdsfZzhhIyKOdfFsg+hBkYe88VoLHQnIB5YfFNXm/4UFOALBAgb7C4K0c+ZPSBHes8mGmoCneSoLVowxc61NOXUgSlIUuTOVOlmT6cm87JO/z3vqYqokL0reJo9bYuzmalD4JRwh8dM0BUsHZ6X/twPhAgwVRKHKc1yytZUgL93U56ouoBLX3uw5R9UcI3ODWTcmWB7ln6Y+NnKhp3LDKs/6vdBDK1qq1kqLsXqRopde9zZO8W0YCEn1grqDkX9Uhx42doBiY/vKAsyeVKJdyt9D8VTuuW8svWo9/HMyJTouwkB6Nt+v/AjJeAVfvAIRj6RJG6JhWjhR/pEGs3CflfsT46FbvRs5DgVymJIGlbNKtx/cU9VDBalZB0P+MLqdyeW3+4m9de/dG9NUpvudRGUg4rwPcsdZCiTHOwfCPYDk7hOHgoBEBTAowLMTinjZX72lDcmbbyntP3ZJlmTUZQ6B2TbJxGGxfB+XoBYgqsPBGanLoTg2uDB0k07lPgPUyHB7meq5BPmnTONY9E0gBxyc/2xVCxEsaaLXFa8dW9OL+6179QYT/3m+8xzfBXsz99kctTbSdtHJdIvKiD/7+X9MuCZmuvaWTxnlI=
+  on: master
+  run:
+    - yarn build
+    - yarn db:sync
