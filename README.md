@@ -29,8 +29,6 @@ $ yarn db:sync
 
 ```sh
 $ yarn dev
-$ yarn test
-$ yarn test:watch
 ```
 
 ## Run
@@ -38,4 +36,11 @@ $ yarn test:watch
 ```sh
 $ yarn build
 $ yarn start
+```
+
+## Test
+
+```sh
+$ yarn test
+$ yarn test:watch
 ```
