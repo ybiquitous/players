@@ -17,7 +17,7 @@ before_script:
   - cp config/config.json config/config.json.bak
   - cp config/config.json.travis config/config.json
 
-scripts:
+script:
   - yarn lint
   - yarn test
 
