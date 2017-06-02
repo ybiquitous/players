@@ -18,6 +18,7 @@ before_script:
   - cp config/config.json.travis config/config.json
 
 scripts:
+  - yarn lint
   - yarn test
 
 after_success:
