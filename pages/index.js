@@ -43,6 +43,19 @@ class Index extends React.Component {
     this.setState({ search, teams })
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  renderListItem({ id, name }) {
+    return (
+      <ListItem
+        key={id}
+        leftAvatar={<Avatar src="/static/images/no-image.png" />}
+        primaryText={name}
+        secondaryText="aaaaaa"
+        rightIcon={<ListItemIcon />}
+      />
+    )
+  }
+
   render() {
     return (
       <AppShell title="Players">
@@ -55,15 +68,7 @@ class Index extends React.Component {
           onChange={this.handleSearchChange}
         />
         <List>
-          {this.state.teams.map(({ id, name }) => (
-            <ListItem
-              key={id}
-              leftAvatar={<Avatar src="/static/images/no-image.png" />}
-              primaryText={name}
-              secondaryText="aaaaaa"
-              rightIcon={<ListItemIcon />}
-            />
-            ))}
+          {this.state.teams.map(this.renderListItem)}
         </List>
       </AppShell>
     )

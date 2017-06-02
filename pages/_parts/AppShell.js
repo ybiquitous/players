@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AppBar from 'material-ui/AppBar'
-import Drawer from 'material-ui/Drawer'
-import MenuItem from 'material-ui/MenuItem'
+import IconButton from 'material-ui/IconButton'
+import DirectionsRun from 'material-ui/svg-icons/maps/directions-run'
 import Menu from './Menu'
 
 const propTypes = {
@@ -14,6 +14,10 @@ const propTypes = {
   ]).isRequired,
 }
 
+function reloadPage() {
+  location.reload()
+}
+
 class AppShell extends React.Component {
   constructor(props) {
     super(props)
@@ -21,12 +25,6 @@ class AppShell extends React.Component {
     this.state = {
       drawerOpen: false,
     }
-
-    this.toggleDrawer = this.toggleDrawer.bind(this)
-  }
-
-  toggleDrawer() {
-    this.setState({ drawerOpen: !this.state.drawerOpen })
   }
 
   render() {
@@ -34,16 +32,22 @@ class AppShell extends React.Component {
     return (
       <div>
         <AppBar
-          title={title}
+          title={<h1>{title}</h1>}
+          iconElementLeft={<IconButton><DirectionsRun /></IconButton>}
           iconElementRight={<Menu />}
-          onLeftIconButtonTouchTap={this.toggleDrawer}
-          onTitleTouchTap={() => location.reload()}
+          onLeftIconButtonTouchTap={reloadPage}
+          onTitleTouchTap={reloadPage}
         />
-
-        <Drawer open={this.state.drawerOpen} onRequestChange={this.toggleDrawer} docked={false}>
-          <MenuItem onTouchTap={this.toggleDrawer}>Menu Item</MenuItem>
-          <MenuItem onTouchTap={this.toggleDrawer}>Menu Item</MenuItem>
-        </Drawer>
+        <style jsx>{`
+          h1 {
+            display: inline;
+            font-size: inherit;
+            font-weight: normal;
+            margin: 0;
+            padding: 0;
+          }
+          h1:hover { cursor: pointer; }
+        `}</style>
 
         <main>
           {children}

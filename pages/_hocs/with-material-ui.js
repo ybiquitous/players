@@ -1,10 +1,14 @@
-// https://github.com/zeit/next.js/issues/873
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
+
+if (!process.tapEventInjected) {
+  injectTapEventPlugin()
+  process.tapEventInjected = true
+}
 
 export default function withMaterialUI(WrappedComponent) {
   return class extends React.Component {
@@ -18,7 +22,7 @@ export default function withMaterialUI(WrappedComponent) {
 
     static async getInitialProps(context) {
       const { req } = context
-      const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
+      const userAgent = process.browser ? navigator.userAgent : req.headers['user-agent']
 
       let pageProps
       if (WrappedComponent.getInitialProps) {
@@ -28,16 +32,6 @@ export default function withMaterialUI(WrappedComponent) {
       }
 
       return { ...pageProps, userAgent }
-    }
-
-    componentWillMount() {
-      try {
-        if (typeof window !== 'undefined') {
-          injectTapEventPlugin()
-        }
-      } catch (e) {
-        // Do nothing, just preventing error
-      }
     }
 
     render() {
