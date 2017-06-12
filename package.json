@@ -43,7 +43,7 @@
   "devDependencies": {
     "ava": "*",
     "babel-eslint": "*",
-    "eslint": "*",
+    "eslint": "3",
     "eslint-config-ybiquitous": "*",
     "husky": "*",
     "lint-staged": "*",
