@@ -14,22 +14,16 @@ if (config.use_env_variable) {
 }
 
 const basename = path.basename(module.filename)
-const db = {}
 fs
   .readdirSync(__dirname)
-  .filter(file => (file !== basename) && (path.extname(file) === '.js'))
-  .forEach((file) => {
-    const model = sequelize.import(path.join(__dirname, file))
-    db[model.name] = model
-  })
+  .filter(file => (file !== basename) && file.endsWith('.js'))
+  .forEach(file => sequelize.import(path.join(__dirname, file)))
 
-Object.keys(db).forEach((modelName) => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db)
+const { models } = sequelize
+Object.values(models).forEach((model) => {
+  if (model.associate) {
+    model.associate(models)
   }
 })
 
-db.sequelize = sequelize
-db.Sequelize = Sequelize
-
-module.exports = db
+module.exports = { sequelize, Sequelize }

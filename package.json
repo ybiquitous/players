@@ -14,8 +14,8 @@
     "test:watch": "yarn test -- --watch",
     "precommit": "lint-staged",
     "lint": "eslint --ignore-path=.gitignore .",
-    "db:sync": "node -e \"require('./models').sequelize.sync()\"",
-    "db:drop": "node -e \"require('./models').sequelize.drop()\"",
+    "db:sync": "node scripts/db.js sync",
+    "db:drop": "node scripts/db.js drop",
     "heroku-postbuild": "next build"
   },
   "lint-staged": {

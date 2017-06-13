@@ -5,13 +5,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
-  }, {
-    classMethods: {
-      associate({ Player }) {
-        Team.belongsToMany(Player, { through: 'PlayerTeam' })
-        Player.belongsToMany(Team, { through: 'PlayerTeam' })
-      },
-    },
   })
+  Team.associate = ({ Player, PlayerTeam }) => {
+    Team.belongsToMany(Player, { through: PlayerTeam })
+  }
   return Team
 }

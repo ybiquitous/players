@@ -1,9 +1,11 @@
 import test from 'ava'
-import { sequelize, Team, Player } from '../'
+import { sequelize } from '../'
+
+const { Team, Player } = sequelize.models
 
 test.beforeEach(async () => {
-  await sequelize.drop()
-  await sequelize.sync()
+  await Team.truncate({ cascade: true })
+  await Player.truncate({ cascade: true })
 })
 
 test(async (t) => {

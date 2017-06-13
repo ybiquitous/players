@@ -23,6 +23,7 @@ postgres=> CREATE DATABASE players_development;
 postgres=> CREATE DATABASE players_test;
 
 $ yarn db:sync
+$ NODE_ENV=test yarn db:sync
 ```
 
 ## Develop
