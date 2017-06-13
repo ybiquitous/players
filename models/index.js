@@ -4,7 +4,7 @@ const Sequelize = require('sequelize')
 
 const env = process.env.NODE_ENV || 'development'
 // eslint-disable-next-line import/no-dynamic-require
-const config = require(`${__dirname}/../config/config.json`)[env]
+const config = require(`${__dirname}/../config`)[env]
 
 let sequelize
 if (config.use_env_variable) {

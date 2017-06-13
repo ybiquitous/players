@@ -13,16 +13,11 @@ addons:
   postgresql: 9.6
 
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - cp config/config.json config/config.json.bak
-  - cp config/config.json.travis config/config.json
+  - psql -c 'create database players_test;' -U postgres
 
 script:
   - yarn lint
   - yarn test
-
-after_success:
-  - cp config/config.json.bak config/config.json
 
 deploy:
   provider: heroku
