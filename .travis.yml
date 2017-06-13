@@ -14,6 +14,7 @@ addons:
 
 before_script:
   - psql -c 'create database players_test;' -U postgres
+  - NODE_ENV=test yarn db:sync
 
 script:
   - yarn lint
