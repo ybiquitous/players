@@ -1,14 +1,11 @@
-const defaults = {
-  username: 'players',
-  password: 'play',
-  dialect: 'postgres',
-}
+const fetchEnv = (key, defval) => (
+  (key in process.env) ? process.env[key] : defval
+)
 
-if (process.env.CI) {
-  Object.assign(defaults, {
-    username: 'postgres',
-    password: '',
-  })
+const defaults = {
+  username: fetchEnv('DATABASE_USER', 'players'),
+  password: fetchEnv('DATABASE_PASSWORD', 'play'),
+  dialect: 'postgres',
 }
 
 module.exports = {
