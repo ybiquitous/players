@@ -1,14 +1,14 @@
-let defaults = {
+const defaults = {
   username: 'players',
   password: 'play',
   dialect: 'postgres',
 }
 
 if (process.env.CI) {
-  defaults = {
+  Object.assign(defaults, {
     username: 'postgres',
     password: '',
-  }
+  })
 }
 
 module.exports = {
