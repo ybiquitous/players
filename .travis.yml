@@ -13,8 +13,9 @@ addons:
   postgresql: 9.6
 
 env:
-  - DATABASE_USER=postgres
-  - DATABASE_PASSWORD=
+  global:
+    - DATABASE_USER=postgres
+    - DATABASE_PASSWORD=
 
 before_script:
   - psql -c 'create database players_test;' -U postgres
