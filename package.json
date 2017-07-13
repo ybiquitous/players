@@ -2,7 +2,10 @@
   "name": "players",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:ybiquitous/players.git",
+  "private": true,
+  "license": "UNLICENSED",
+  "author": "ybiquitous <ybiquitous@gmail.com>",
+  "repository": "ybiquitous/players",
   "engines": {
     "node": "8"
   },
@@ -19,7 +22,7 @@
     "heroku-postbuild": "next build"
   },
   "lint-staged": {
-    "*.@(js|jsx)": [
+    "*.{js,jsx}": [
       "eslint --fix --max-warnings=0 --no-ignore",
       "git add"
     ]
